@@ -19,14 +19,14 @@ namespace exercResolvidoSet.Entities
 
         public override int GetHashCode()
         {
-            return UserName.GetHashCode() + Instant.GetHashCode();
+            return UserName.GetHashCode();// + Instant.GetHashCode();
         }
 
         public override bool Equals(object? obj)
         {
             if(!(obj is LogRecord)) return false;
             LogRecord other = obj as LogRecord;
-            return UserName.Equals(other.UserName) && Instant.Equals(other.Instant);
+            return UserName.Equals(other.UserName);// && Instant.Equals(other.Instant);
         }
         
 
