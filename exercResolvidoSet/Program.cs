@@ -5,3 +5,28 @@ conforme exemplo. Fazer um programa que leia o log de acessos a
 partir de um arquivo, e daí informe quantos usuários distintos
 acessaram o site.*/
 
+using exercResolvidoSet.Entities;
+
+HashSet<LogRecord> records = new HashSet<LogRecord>();
+
+Console.Write("Enter file full path: ");
+string path = Console.ReadLine();
+
+try
+{
+    using (StreamReader sr = File.OpenText(path)){
+        while (!sr.EndOfStream)
+        {
+            string[] line = sr.ReadLine().Split(' ');
+            string name = line[0];
+            DateTime instant = DateTime.Parse(line[1]);
+            records.Add(new LogRecord(name, instant));
+        }
+        Console.WriteLine("Total users: " + records.Count);
+    }
+
+}
+catch(IOException e)
+{
+    Console.WriteLine(e.Message);
+}
